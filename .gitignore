@@ -1,13 +1,5 @@
-# Node modules
 node_modules/
-
-# Angular build
 dist/
 .angular/
-
-# VS Code
-.vscode/
-
-# Gradle cache (Java files jo dikh rahi hain)
 .gradle/
-build/
+*.java
