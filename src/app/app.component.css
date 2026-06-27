@@ -1,0 +1,12 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.main-content {
+  flex: 1;
+  background: #f0f2f5;
+  overflow-y: auto;
+  padding: 24px;
+}

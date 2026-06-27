@@ -1,1 +1,41 @@
-<p>employee-form works!</p>
+<div class="form-container">
+  <h1>{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</h1>
+  <div class="form-card">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" [(ngModel)]="employee.name" name="name" required placeholder="Enter name"/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="employee.email" name="email" required placeholder="Enter email"/>
+      </div>
+      <div class="form-group">
+        <label>Department</label>
+        <select [(ngModel)]="employee.department" name="department" required>
+          <option value="">Select Department</option>
+          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Salary</label>
+        <input type="number" [(ngModel)]="employee.salary" name="salary" required placeholder="Enter salary"/>
+      </div>
+      <div class="form-group">
+        <label>Join Date</label>
+        <input type="date" [(ngModel)]="employee.joinDate" name="joinDate" required/>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select [(ngModel)]="employee.status" name="status">
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-save">{{ isEdit ? 'Update' : 'Save' }}</button>
+        <a routerLink="/employees" class="btn-cancel">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

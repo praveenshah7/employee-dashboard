@@ -1,0 +1,39 @@
+.dashboard h1 {
+  margin-bottom: 24px;
+  color: #1e293b;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.stat-icon { font-size: 36px; }
+
+.stat-info h3 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.stat-info p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.blue { border-left: 4px solid #3b82f6; }
+.green { border-left: 4px solid #22c55e; }
+.purple { border-left: 4px solid #a855f7; }
+.orange { border-left: 4px solid #f97316; }

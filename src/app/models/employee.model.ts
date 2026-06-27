@@ -4,6 +4,6 @@ export interface Employee {
   email: string;
   department: string;
   salary: number;
-  status: string;
   joinDate: string;
+  status: 'Active' | 'Inactive';
 }
