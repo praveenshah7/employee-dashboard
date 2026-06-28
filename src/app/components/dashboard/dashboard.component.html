@@ -1,33 +1,88 @@
 <div class="dashboard">
-  <h1>Dashboard</h1>
-  <div class="stats-grid">
-    <div class="stat-card blue">
-      <div class="stat-icon">👥</div>
-      <div class="stat-info">
-        <h3>{{ totalEmployees }}</h3>
-        <p>Total Employees</p>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h1>Good Evening 👋</h1>
+      <p>Here's what's happening with your team today.</p>
+    </div>
+    <a routerLink="/employee/add" class="btn-primary">+ Add Employee</a>
+  </div>
+
+ <!-- Stats Cards -->
+<div class="stats-grid">
+  <div class="stat-card card-blue">
+    <div class="card-icon"><i class="pi pi-users"></i></div>
+    <div class="card-info">
+      <span class="card-label">Total Employees</span>
+      <span class="card-value">{{ totalEmployees }}</span>
+    </div>
+    <div class="card-trend"><i class="pi pi-arrow-up"></i> All time</div>
+  </div>
+  <div class="stat-card card-green">
+    <div class="card-icon"><i class="pi pi-check-circle"></i></div>
+    <div class="card-info">
+      <span class="card-label">Active</span>
+      <span class="card-value">{{ activeEmployees }}</span>
+    </div>
+    <div class="card-trend"><i class="pi pi-arrow-up"></i> Working</div>
+  </div>
+  <div class="stat-card card-purple">
+    <div class="card-icon"><i class="pi pi-building"></i></div>
+    <div class="card-info">
+      <span class="card-label">Departments</span>
+      <span class="card-value">{{ departments }}</span>
+    </div>
+    <div class="card-trend"><i class="pi pi-arrow-right"></i> Teams</div>
+  </div>
+  <div class="stat-card card-orange">
+    <div class="card-icon"><i class="pi pi-wallet"></i></div>
+    <div class="card-info">
+      <span class="card-label">Avg Salary</span>
+      <span class="card-value">₹{{ avgSalary | number }}</span>
+    </div>
+    <div class="card-trend"><i class="pi pi-arrow-up"></i> Monthly</div>
+  </div>
+</div>
+
+  <!-- Bottom Section -->
+  <div class="bottom-grid">
+
+    <!-- Department Chart -->
+    <div class="chart-card">
+      <h2>Department Breakdown</h2>
+      <div class="dept-list">
+        <div class="dept-item" *ngFor="let dept of departmentStats">
+          <div class="dept-header">
+            <span class="dept-name">{{ dept.name }}</span>
+            <span class="dept-count">{{ dept.count }} employees</span>
+          </div>
+          <div class="bar-bg">
+            <div class="bar-fill" [style.width]="getBarWidth(dept.count)" [style.background]="dept.color"></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="stat-card green">
-      <div class="stat-icon">✅</div>
-      <div class="stat-info">
-        <h3>{{ activeEmployees }}</h3>
-        <p>Active Employees</p>
+
+    <!-- Recent Employees -->
+    <div class="recent-card">
+      <div class="section-header">
+        <h2>Recent Employees</h2>
+        <a routerLink="/employees" class="view-all">View All →</a>
+      </div>
+      <div class="employee-item" *ngFor="let emp of recentEmployees">
+        <div class="avatar" [style.background]="'#6366f1'">
+          {{ emp.name.charAt(0) }}
+        </div>
+        <div class="emp-info">
+          <span class="emp-name">{{ emp.name }}</span>
+          <span class="emp-dept">{{ emp.department }}</span>
+        </div>
+        <span [class]="emp.status === 'Active' ? 'badge-active' : 'badge-inactive'">
+          {{ emp.status }}
+        </span>
       </div>
     </div>
-    <div class="stat-card purple">
-      <div class="stat-icon">🏢</div>
-      <div class="stat-info">
-        <h3>{{ departments }}</h3>
-        <p>Departments</p>
-      </div>
-    </div>
-    <div class="stat-card orange">
-      <div class="stat-icon">💰</div>
-      <div class="stat-info">
-        <h3>₹{{ avgSalary | number }}</h3>
-        <p>Avg Salary</p>
-      </div>
-    </div>
+
   </div>
 </div>
