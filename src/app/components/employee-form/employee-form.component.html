@@ -1,41 +1,74 @@
-<div class="form-container">
-  <h1>{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</h1>
-  <div class="form-card">
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" [(ngModel)]="employee.name" name="name" required placeholder="Enter name"/>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" [(ngModel)]="employee.email" name="email" required placeholder="Enter email"/>
-      </div>
-      <div class="form-group">
-        <label>Department</label>
-        <select [(ngModel)]="employee.department" name="department" required>
-          <option value="">Select Department</option>
-          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Salary</label>
-        <input type="number" [(ngModel)]="employee.salary" name="salary" required placeholder="Enter salary"/>
-      </div>
-      <div class="form-group">
-        <label>Join Date</label>
-        <input type="date" [(ngModel)]="employee.joinDate" name="joinDate" required/>
-      </div>
-      <div class="form-group">
-        <label>Status</label>
-        <select [(ngModel)]="employee.status" name="status">
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn-save">{{ isEdit ? 'Update' : 'Save' }}</button>
-        <a routerLink="/employees" class="btn-cancel">Cancel</a>
-      </div>
-    </form>
+<div class="form-page">
+
+  <div class="form-header">
+    <div class="header-left">
+      <h1>{{ isEdit ? 'Edit Employee' : 'Add New Employee' }}</h1>
+      <p>{{ isEdit ? 'Update employee information' : 'Fill in the details to add a new employee' }}</p>
+    </div>
+    <a routerLink="/employees" class="btn-back">
+      <i class="pi pi-arrow-left"></i> Back to Employees
+    </a>
   </div>
+
+  <div class="form-card">
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label><i class="pi pi-user"></i> Full Name</label>
+        <input type="text" [(ngModel)]="employee.name" name="name" placeholder="Enter full name"/>
+      </div>
+
+      <div class="form-group">
+        <label><i class="pi pi-envelope"></i> Email</label>
+        <input type="email" [(ngModel)]="employee.email" name="email" placeholder="Enter email address"/>
+      </div>
+
+      <div class="form-group">
+        <label><i class="pi pi-building"></i> Department</label>
+        <select [(ngModel)]="employee.department" name="department">
+          <option value="">Select Department</option>
+          @for(dept of departments; track dept) {
+            <option [value]="dept">{{ dept }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label><i class="pi pi-wallet"></i> Salary (₹)</label>
+        <input type="number" [(ngModel)]="employee.salary" name="salary" placeholder="Enter salary amount"/>
+      </div>
+
+      <div class="form-group">
+        <label><i class="pi pi-calendar"></i> Join Date</label>
+        <input type="date" [(ngModel)]="employee.joinDate" name="joinDate"/>
+      </div>
+
+      <div class="form-group">
+        <label><i class="pi pi-info-circle"></i> Status</label>
+        <div class="status-toggle">
+          <button type="button"
+            [class]="employee.status === 'Active' ? 'toggle-btn active-btn selected' : 'toggle-btn active-btn'"
+            (click)="employee.status = 'Active'">
+            <i class="pi pi-check-circle"></i> Active
+          </button>
+          <button type="button"
+            [class]="employee.status === 'Inactive' ? 'toggle-btn inactive-btn selected' : 'toggle-btn inactive-btn'"
+            (click)="employee.status = 'Inactive'">
+            <i class="pi pi-times-circle"></i> Inactive
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-save" (click)="onSubmit()">
+        <i class="pi pi-check"></i> {{ isEdit ? 'Update Employee' : 'Save Employee' }}
+      </button>
+      <a routerLink="/employees" class="btn-cancel">
+        <i class="pi pi-times"></i> Cancel
+      </a>
+    </div>
+  </div>
+
 </div>

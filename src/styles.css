@@ -10,3 +10,15 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f0f2f5;
 }
+.header-left h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+}
+
+.header-left p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 4px 0 0;
+}
